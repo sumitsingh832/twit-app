@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createTweet, fetchTweets, updateTweetLike } from '../api/tweetsApi';
+import LikeButton from '../components/LikeButton';
 import { useAuth } from '../context/AuthContext';
 
 export default function HomePage() {
@@ -74,6 +75,12 @@ export default function HomePage() {
   return (
     <div className="page-box">
       <h1>Home</h1>
+
+      <article className="tweet-card">
+        <h2>Optimistic Like Demo</h2>
+        <p>This example rolls back the like count if the request fails.</p>
+        <LikeButton postId="demo-post" initialLikeCount={0} />
+      </article>
 
       <form className="tweet-form" onSubmit={handleSubmit}>
         <textarea
